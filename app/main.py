@@ -3,7 +3,7 @@ import read_csv
 import charts
 
 def run():
-    topten_population()
+    chart_population()
     #dudas()
 
 def dudas():
@@ -32,19 +32,21 @@ def topten_population():
     #print(list(range(1,5)))
 
 def mayor_porcentaje_poblacional():
-    data = read_csv.read_csv('./app/data.csv')
+    data = read_csv.read_csv('./data.csv')
     percentages = list(map(lambda i:i['World Population Percentage'], data))
     countries = list(map(lambda i:i['Country/Territory'], data))
     charts.generate_pie_chart(countries, percentages )
 
 def chart_population():
-    data = read_csv.read_csv('./app/data.csv')
+    data = read_csv.read_csv('./data.csv')
     country = input('Type Country =>')
+    countryn = country
     result = utils.population_by_country(data,country)
     if len(result) > 0:
         country = result[0]
+        print(countryn)
         labels, values = utils.get_population(country)
-        charts.generate_bar_chart(labels, values)
+        charts.generate_bar_chart(countryn,labels, values)
 
 if __name__ == '__main__': #ejecuta solo si se manda a llamar directamente en la terminal mientras no
     run()
